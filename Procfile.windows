@@ -1,1 +1,1 @@
-web: python groupBot.py
+worker: python groupBot.py

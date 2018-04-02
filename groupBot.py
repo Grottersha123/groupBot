@@ -1,10 +1,6 @@
-import urllib.request as r
-import re
+
 import vk
-from datetime import datetime, date, time
 import time as t
-import configparser
-import re
 from telegramSendBot import *
 
 
@@ -90,11 +86,14 @@ def wallVkSend(wall,date):
 if __name__ == '__main__':
     print(vk.__version__)
     # vk.logger.setLevel('DEBUG')
-    session = vk.AuthSession(5748248, 'nastya_grotter@mail.ru', r'Grotter123', scope='wall, messages')
+    session = vk.AuthSession(5748248, 'nastya_grotter@mail.ru', r'Grotter123', scope='wall, messages,offline')
+    print(session.access_token)
+    # print(session)
     # vk.api.access_token = "7425eedc7425eedc7425eedc65747258c4774257425eedc2db33deaf26b8661b14b86e8"
     # access_token='tocken'
     # session= vk.Session(access_token ='7425eedc7425eedc7425eedc65747258c4774257425eedc2db33deaf26b8661b14b86e8')
     vk_api = vk.API(session, v=5.73)
+    # print(vk_api.checkToken(token=session.access_token,ip = ''))
     # wallKB = vk_api.wall.get(owner_id=-164236423)
     # print(wallKB['items'][1:])
     # text post_type post attachments date
@@ -115,13 +114,14 @@ if __name__ == '__main__':
                 a = "\n".join(post)
                 print(a)
                 try:
+                    # pass
                     postToTelegram(a)
                 except:
                     send_message(vk_api,46099694,'Обнови данные в телеграмме')
                     print('bedddd')
         else:
             print("We don't have update")
-        t.sleep(1800)
+        t.sleep(3600)
 
 
 

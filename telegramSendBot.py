@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-import telebot
+
 import requests
-bot = telebot.TeleBot('502685712:AAFJL2QFZt0yKTNH-jJ9Hu_pCaoYLLG_u6Q')
+url = "https://api.telegram.org/bot502685712:AAFJL2QFZt0yKTNH-jJ9Hu_pCaoYLLG_u6Q/"
 
 
 
@@ -18,6 +18,10 @@ def last_update(data):
     total_updates = len(results) - 1
     return results[total_updates]
 
+def send_mess(chat, text):
+    params = {'chat_id': chat, 'text': text}
+    response = requests.post(url + 'sendMessage', data=params)
+    return response
 
 def get_chat_id(update):
     chat_id = update['message']['chat']['id']
@@ -26,10 +30,10 @@ def get_chat_id(update):
 def postToTelegram(messages):
 
 
-    url = "https://api.telegram.org/bot502685712:AAFJL2QFZt0yKTNH-jJ9Hu_pCaoYLLG_u6Q/"
 
-    chat_id = get_chat_id(last_update(get_updates_json(url)))
+    # chat_id = get_chat_id(last_update(get_updates_json(url)))
     # print(chat_id)
-    bot.send_message(chat_id,messages)
+    send_mess(-279392616,messages)
 if __name__ == '__main__':
+    # postToTelegram('lol')
     pass

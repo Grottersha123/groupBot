@@ -2,7 +2,7 @@
 import vk
 import time as t
 from telegramSendBot import *
-
+from datetime import datetime
 
 def send_message(api, user_id, message, **kwargs):
     data_dict = {
@@ -83,6 +83,28 @@ def wallVkSend(wall,date):
     return lst,temp
 
 
+def wallVkSendCurrentDate(wall,date,temps = None):
+    lst = []
+    temp = wall[0]['date']
+    print(temp)
+    month = date.strftime('%d-%m-%Y')
+    hour = int(date.strftime('%H%M%S'))
+    for post in wall:
+        # print(post)
+        dt = datetime.fromtimestamp(post['date'])
+        month1 = dt.strftime('%d-%m-%Y')
+        hour1 = int(date.strftime('%H%M%S'))
+        if month1 == month:
+                    # print(post)
+                    primaryPost = takeInformathion(post)
+                    lst.append(primaryPost)
+
+        else:
+            break
+    return lst,temp
+
+
+
 if __name__ == '__main__':
     print(vk.__version__)
     # vk.logger.setLevel('DEBUG')
@@ -98,18 +120,19 @@ if __name__ == '__main__':
     # print(wallKB['items'][1:])
     # text post_type post attachments date
     # a = vk_api.groups.getById(group_ids=152997613)
-
+    temp = 1522509507
     while True:
         print('Start')
         wallKB = vk_api.wall.get(owner_id=-152997613)
         wall = wallKB['items'][1:]
-        date = openConfig(r'setting.ini')
-        posts,dateVK = wallVkSend(wall,date['Date']['date'])
+        # date = openConfig(r'setting.ini')
+        posts,dateVK = wallVkSend(wall,temp)
         print(posts)
         if posts != []:
-            date['Date'] = {'date':dateVK}
-            with open('setting.ini', 'w') as configfile:
-                date.write(configfile)
+            temp = dateVK
+            # date['Date'] = {'date':dateVK}
+            # with open('setting.ini', 'w') as configfile:
+            #     date.write(configfile)
             for post in posts[::-1]:
                 a = "\n".join(post)
                 print(a)

@@ -120,7 +120,7 @@ if __name__ == '__main__':
     # print(wallKB['items'][1:])
     # text post_type post attachments date
     # a = vk_api.groups.getById(group_ids=152997613)
-    temp = 1522509507
+    temp = 1522785004
     while True:
         print('Start')
         wallKB = vk_api.wall.get(owner_id=-152997613)

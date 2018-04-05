@@ -83,7 +83,7 @@ def wallVkSend(wall,date):
     return lst,temp
 
 
-def wallVkSendCurrentDate(wall,date,temps = None):
+def wallVkSendCurrentDate(wall,date):
     lst = []
     temp = wall[0]['date']
     print(temp)
@@ -126,7 +126,7 @@ if __name__ == '__main__':
         wallKB = vk_api.wall.get(owner_id=-152997613)
         wall = wallKB['items'][1:]
         # date = openConfig(r'setting.ini')
-        posts,dateVK = wallVkSend(wall,temp)
+        posts,dateVK = wallVkSendCurrentDate(wall,datetime.today())
         print(posts)
         if posts != []:
             temp = dateVK

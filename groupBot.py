@@ -3,7 +3,7 @@ import vk
 import time as t
 from telegramSendBot import *
 from datetime import datetime
-
+import conf
 def send_message(api, user_id, message, **kwargs):
     data_dict = {
         'response': 5748248,
@@ -108,13 +108,9 @@ def wallVkSendCurrentDate(wall,date):
 if __name__ == '__main__':
     print(vk.__version__)
     # vk.logger.setLevel('DEBUG')
-    session = vk.AuthSession(5748248, 'nastya_grotter@mail.ru', r'Grotter123', scope='wall, messages,offline')
+    session = vk.AuthSession(5748248, condf.logg, conf.pass, scope='wall, messages,offline')
     print(session.access_token)
-    # print(session)
-    # vk.api.access_token = "7425eedc7425eedc7425eedc65747258c4774257425eedc2db33deaf26b8661b14b86e8"
-    # access_token='tocken'
-    # session= vk.Session(access_token ='7425eedc7425eedc7425eedc65747258c4774257425eedc2db33deaf26b8661b14b86e8')
-    vk_api = vk.API(session, v=5.73)
+      vk_api = vk.API(session, v=5.73)
     # print(vk_api.checkToken(token=session.access_token,ip = ''))
     # wallKB = vk_api.wall.get(owner_id=-164236423)
     # print(wallKB['items'][1:])

@@ -2,7 +2,8 @@
 
 
 import requests
-url = "https://api.telegram.org/bot502685712:AAFJL2QFZt0yKTNH-jJ9Hu_pCaoYLLG_u6Q/"
+import conf
+url = "https://api.telegram.org/bot502685712:token/".format(token= conf.tk)
 
 
 
